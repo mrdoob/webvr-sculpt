@@ -3,7 +3,7 @@
  * @author stewdio / http://stewd.io
  */
 
-THREE.ViveController = function ( id ) {
+THREE.ViveOrTouchController = function ( id ) {
 
 	THREE.Object3D.call( this );
 
@@ -26,8 +26,7 @@ THREE.ViveController = function ( id ) {
 		for ( var i = 0, j = 0; i < 4; i ++ ) {
 
 			var gamepad = gamepads[ i ];
-
-			if ( gamepad && gamepad.id === 'OpenVR Gamepad' ) {
+			if ( gamepad && (gamepad.id === 'OpenVR Gamepad' || gamepad.id.startsWith('Oculus Touch') ) ) {
 
 				if ( j === id ) return gamepad;
 
@@ -61,7 +60,7 @@ THREE.ViveController = function ( id ) {
 
 		gamepad = findGamepad( id );
 
-		if ( gamepad !== undefined && gamepad.pose !== null ) {
+		if ( gamepad !== undefined && gamepad.pose !== null && gamepad.pose.position != null ) {
 
 			//  Position and orientation.
 
@@ -122,5 +121,5 @@ THREE.ViveController = function ( id ) {
 
 };
 
-THREE.ViveController.prototype = Object.create( THREE.Object3D.prototype );
-THREE.ViveController.prototype.constructor = THREE.ViveController;
+THREE.ViveOrTouchController.prototype = Object.create( THREE.Object3D.prototype );
+THREE.ViveOrTouchController.prototype.constructor = THREE.ViveOrTouchController;
