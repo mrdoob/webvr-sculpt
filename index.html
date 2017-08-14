@@ -24,7 +24,7 @@
 		<script src="js/WebVR.js"></script>
 		<script src="js/effects/VREffect.js"></script>
 		<script src="js/controls/VRControls.js"></script>
-		<script src="js/ViveController.js"></script>
+		<script src="js/ViveOrTouchController.js"></script>
 
 		<script src="js/loaders/OBJLoader.js"></script>
 		<script src="js/MarchingCubes.js"></script>
@@ -122,11 +122,11 @@
 
 				// controllers
 
-				controller1 = new THREE.ViveController( 0 );
+				controller1 = new THREE.ViveOrTouchController( 0 );
 				controller1.standingMatrix = controls.getStandingMatrix();
 				scene.add( controller1 );
 
-				controller2 = new THREE.ViveController( 1 );
+				controller2 = new THREE.ViveOrTouchController( 1 );
 				controller2.standingMatrix = controls.getStandingMatrix();
 				scene.add( controller2 );
 

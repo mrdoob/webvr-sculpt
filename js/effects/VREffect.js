@@ -139,8 +139,8 @@ THREE.VREffect = function ( renderer, onError ) {
 					var layers = vrDisplay.getLayers();
 					if ( layers.length ) {
 
-						leftBounds = layers[0].leftBounds || [ 0.0, 0.0, 0.5, 1.0 ];
-						rightBounds = layers[0].rightBounds || [ 0.5, 0.0, 0.5, 1.0 ];
+						leftBounds = (layers[0].leftBounds && layers[0].leftBounds.length > 0) || [ 0.0, 0.0, 0.5, 1.0 ];
+						rightBounds = (layers[0].rightBounds && layers[0].rightBounds.length > 0) || [ 0.5, 0.0, 0.5, 1.0 ];
 
 					}
 
@@ -228,7 +228,6 @@ THREE.VREffect = function ( renderer, onError ) {
 				}
 
 			} else {
-
 				if ( canvas[ requestFullscreen ] ) {
 
 					canvas[ boolean ? requestFullscreen : exitFullscreen ]( { vrDisplay: vrDisplay } );
