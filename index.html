@@ -47,6 +47,7 @@
 			var blob, vector;
 
 			var points = [];
+			var lastPointAddedToBlob;
 
 			init();
 			initBlob();
@@ -199,15 +200,17 @@
 				scene.add( blob );
 
 				initPoints();
-
 			}
 
 			function initPoints() {
+      			lastPointAddedToBlob = 0;
 
 				points = [
 					{ position: new THREE.Vector3(), strength: - 0.08, subtract: 10 },
 					{ position: new THREE.Vector3(), strength:   0.04, subtract: 10 }
 				];
+
+				blob.reset();
 
 			}
 
@@ -302,9 +305,7 @@
 
 			function updateBlob() {
 
-				blob.reset();
-
-				for ( var i = 0; i < points.length; i ++ ) {
+				for ( var i = lastPointAddedToBlob; i < points.length; i ++ ) {
 
 					var point = points[ i ];
 					var position = point.position;
@@ -312,6 +313,7 @@
 					blob.addBall( position.x, position.y, position.z, point.strength, point.subtract );
 
 				}
+				lastPointAddedToBlob = this.points.length;
 
 			}
 
